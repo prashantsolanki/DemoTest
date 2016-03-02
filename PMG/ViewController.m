@@ -1,9 +1,7 @@
 //
 //  ViewController.m
-//  PMG
-//
-//  Created by Prashant on 23/09/15.
-//  Copyright © 2015 Prashant. All rights reserved.
+//  Created by Prashant.
+//  Copyright © 2016 Prashant. All rights reserved.
 //
 
 #import "ViewController.h"
@@ -31,7 +29,7 @@
     
     locationManager = [[CLLocationManager alloc] init];
     locationManager.distanceFilter = kCLDistanceFilterNone;
-    locationManager.desiredAccuracy = kCLLocationAccuracyThreeKilometers;
+    locationManager.desiredAccuracy = kCLLocationAccuracyKilometer;
     [locationManager startUpdatingLocation];
     
     
@@ -78,23 +76,17 @@
     cell.lblAddress.text = place.location.address;
     cell.lblDistance.text = place.location.distance.description;
     
-    /*
-    VenueCell *cell = [tableView dequeueReusableCellWithIdentifier:@"VenueCell" forIndexPath:indexPath];
-    
-    Venue *venue = _venues[indexPath.row];
-    cell.nameLabel.text = venue.name;
-    cell.distanceLabel.text = [NSString stringWithFormat:@"%.0fm", venue.location.distance.floatValue];
-    cell.checkinsLabel.text = [NSString stringWithFormat:@"%d checkins", venue.stats.checkins.intValue];
-    
-    */
     return cell;
 }
 
--(IBAction)searchNearMe:(id)sender
+-(IBAction)searchButtonClick:(id)sender
+{
+    [self searchNearMe:txtSearch.text];
+}
+-(void)searchNearMe:(NSString *)strSearch
 {
     NSLog(@"SearchValue is %@",txtSearch.text);
-   // [tblNearbylist reloadData];
-    // initialize AFNetworking HTTPClient
+   
     NSURL *baseURL = [NSURL URLWithString:@"https://api.foursquare.com"];
     AFHTTPClient *client = [[AFHTTPClient alloc] initWithBaseURL:baseURL];
     
@@ -104,20 +96,13 @@
     // setup object mappings
     RKObjectMapping *venueMapping = [RKObjectMapping mappingForClass:[Place class]];
     [venueMapping addAttributeMappingsFromArray:@[@"name"]];
-//    [venueMapping addAttributeMappingsFromArray:@[@"location"]];
-    
     
     // define location object mapping
     RKObjectMapping *locationMapping = [RKObjectMapping mappingForClass:[Location class]];
     [locationMapping addAttributeMappingsFromArray:@[@"address", @"city", @"country", @"crossStreet", @"postalCode", @"state", @"distance", @"lat", @"lng"]];
     
-    
     // define relationship mapping
-    [locationMapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"location" toKeyPath:@"location" withMapping:locationMapping]];
-    
-    
-    
- //   [venueMapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"stats" toKeyPath:@"stats" withMapping:statsMapping]];
+    [venueMapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"location" toKeyPath:@"location" withMapping:locationMapping]];
     
     
     // register mappings with the provider using a response descriptor
@@ -126,6 +111,7 @@
     [objectManager addResponseDescriptor:responseDescriptor];
     
     [self LoadnearbyPlacesData];
+    
 }
 
 -(void)LoadnearbyPlacesData
@@ -135,8 +121,8 @@
     float Long = locationManager.location.coordinate.longitude;
     NSLog(@"Lat : %f  Long : %f",Lat,Long);
     
-//    NSString *latLon = @"37.33,-122.03"; // approximate latLon of The Mothership
-    NSString *latLon = [NSString stringWithFormat:@"%.02f,%.02f",Lat,Long];
+    NSString *latLon = @"55.63,12.65"; // approximate latLon of The Mothership
+//    NSString *latLon = [NSString stringWithFormat:@"%.02f,%.02f",Lat,Long];
     NSString *clientID = [NSString stringWithUTF8String:fsClientID];
     NSString *clientSecret = [NSString stringWithUTF8String:fsClientkey];
     
@@ -168,4 +154,14 @@
     [self touchesBegan:touches withEvent:event];
 }
 
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSString *newString = [txtSearch.text stringByReplacingCharactersInRange:range withString:string];
+    
+    
+    NSLog(@"Update String = %@",newString);
+    [self searchNearMe:txtSearch.text];
+    return YES;
+}
 @end

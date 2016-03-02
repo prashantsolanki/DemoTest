@@ -2,7 +2,7 @@
 //  Place.h
 //  NordeaDemo
 //
-//  Created by Prashant on 29/02/16.
+//  Created by Prashant.
 //  Copyright © 2016 Prashant. All rights reserved.
 //
 
@@ -14,6 +14,6 @@
 @property (nonatomic,strong) NSString *name;
 @property (nonatomic, strong) Location *location;
 
--(id) initWithJson:(NSDictionary *)json;
+//-(id) initWithJson:(NSDictionary *)json;
 
 @end

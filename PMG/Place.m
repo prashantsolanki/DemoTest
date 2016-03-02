@@ -2,7 +2,7 @@
 //  Place.m
 //  NordeaDemo
 //
-//  Created by Prashant on 29/02/16.
+//  Created by Prashant.
 //  Copyright © 2016 Prashant. All rights reserved.
 //
 

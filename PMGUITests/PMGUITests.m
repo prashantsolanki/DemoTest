@@ -1,9 +1,6 @@
 //
-//  PMGUITests.m
-//  PMGUITests
-//
-//  Created by Prashant on 23/09/15.
-//  Copyright © 2015 Prashant. All rights reserved.
+//  Created by Prashant.
+//  Copyright © 2016 Prashant. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>

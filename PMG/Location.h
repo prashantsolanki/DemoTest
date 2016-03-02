@@ -1,8 +1,7 @@
 //
 //  Location.h
 //  NordeaDemo
-//
-//  Created by Prashant on 28/02/16.
+//  Created by Prashant.
 //  Copyright © 2016 Prashant. All rights reserved.
 //
 
@@ -12,10 +11,7 @@
 {
     
 }
-/*
-@property (nonatomic,strong) NSString *strLocName;
-@property (nonatomic,strong) NSString *strLocAddress;
-@property (nonatomic,strong) NSString *strLocDistance;*/
+
 @property (nonatomic, strong) NSString *address;
 @property (nonatomic, strong) NSString *city;
 @property (nonatomic, strong) NSString *country;

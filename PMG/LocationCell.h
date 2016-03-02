@@ -2,9 +2,8 @@
 //  LocationCell.h
 //  NordeaDemo
 //
-//  Created by Prashant on 28/02/16.
+//  Created by Prashant.
 //  Copyright © 2016 Prashant. All rights reserved.
-//
 
 #import <UIKit/UIKit.h>
 

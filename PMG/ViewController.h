@@ -1,9 +1,7 @@
 //
 //  ViewController.h
-//  PMG
-//
-//  Created by Prashant on 23/09/15.
-//  Copyright © 2015 Prashant. All rights reserved.
+//  Created by Prashant.
+//  Copyright © 2016 Prashant. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -18,5 +16,8 @@
 @property (nonatomic,strong) IBOutlet UITextField *txtSearch;
 @property (nonatomic,strong) IBOutlet UITableView *tblNearbylist;
 @property (nonatomic,strong) NSMutableArray *arrFetchdata;
+
+-(IBAction)searchButtonClick:(id)sender;
+-(void)searchNearMe:(NSString *)strSearch;
 @end
 
