@@ -121,8 +121,8 @@
     float Long = locationManager.location.coordinate.longitude;
     NSLog(@"Lat : %f  Long : %f",Lat,Long);
     
-    NSString *latLon = @"55.63,12.65"; // approximate latLon of The Mothership
-//    NSString *latLon = [NSString stringWithFormat:@"%.02f,%.02f",Lat,Long];
+//    NSString *latLon = @"55.63,12.65"; // approximate latLon of The Mothership
+    NSString *latLon = [NSString stringWithFormat:@"%.02f,%.02f",Lat,Long];
     NSString *clientID = [NSString stringWithUTF8String:fsClientID];
     NSString *clientSecret = [NSString stringWithUTF8String:fsClientkey];
     
